@@ -1,0 +1,29 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+    title: string;
+    description?: string;
+    img?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description, img = "./placeholder-social.jpg" } = Astro.props;
+---
+
+<!-- Global MetaData -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, intial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.icon" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+
