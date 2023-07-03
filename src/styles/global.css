@@ -1,3 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+
+    .heading {
+        @apply flex-shrink-0 w-auto h-auto whitespace-pre-wrap break-words 
+        overflow-visible relative font-bold font-sans dark:text-gray-200
+        text-heading md:text-6xl lg:text-7xl text-5xl text-center 
+        tracking-tight leading-tight
+    }
+    
+}
 
 body {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

@@ -1,10 +1,19 @@
 ---
 const handleFileUpload = (some: any) => {
-	console.log("Handle File upload ", some)
-}
+	console.log("Handle File upload ", some);
+};
+import Card from "../layouts/Card.astro";
+import Layout from "../layouts/Layout.astro";
+
 ---
 
-<html lang="en">
+<Layout>
+		<main>
+			<Card />
+		</main>
+</Layout>
+
+<!-- <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,12 +24,8 @@ const handleFileUpload = (some: any) => {
 	<body>
 		<div class="layout px-24">
 			<div class='container max-w-7xl bg-slate-200'>
-				<div class="flex-shrink-0 w-auto h-auto 
-                whitespace-pre-wrap break-words overflow-visible relative font-bold 
-                font-sans dark:text-textHeadingDark text-textHeading 
-                md:text-6xl lg:text-7xl text-5xl ${textAlign}
-                tracking-tight leading-tight">
-					Change Image Text into Langauge of your choice
+				<div class="flex-shrink-0 w-auto h-auto whitespace-pre-wrap break-words overflow-visible relative font-bold font-sans dark:text-textHeadingDark text-textHeading md:text-6xl lg:text-7xl text-5xl ${textAlign} tracking-tight leading-tight">
+					 Change Image Text into Langauge of your choice
 				</div>
 				<section class="section p-5 md:px-10 lg:p-24">
 				<div class="flex items-center justify-center w-full">
@@ -33,7 +38,6 @@ const handleFileUpload = (some: any) => {
 						<input  id="dropzone-file" type="file" class="hidden" />
 					</label>
 				</div> 
-	<!-- Add a spacer  -->
 				<div class="h-2 bg-transparent w-auto" />
 
 				<div class="p-3 bg-white rounded-md flex justify-center">
@@ -44,4 +48,4 @@ const handleFileUpload = (some: any) => {
 		</div>
 	</body>
 	
-</html>
+</html> -->
