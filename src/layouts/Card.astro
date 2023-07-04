@@ -1,12 +1,15 @@
 <section>
-    <div class="container">
+    <div class="mainContainer">
         <div class="rows">
             <div class="image"></div>
             <div class="inner-rows">
                 <div class="row1">
                     <div class="title">Some heading</div>
                     <div class="subtitle">
-                        I’m a designer from Amsterdam, The Netherlands. Early 2017 I joined Framer to help build the next generation interactive design tool. At Framer I help shape the brand and build Framer.com.
+                        I’m a designer from Amsterdam, The Netherlands. Early
+                        2017 I joined Framer to help build the next generation
+                        interactive design tool. At Framer I help shape the
+                        brand and build Framer.com.
                     </div>
                 </div>
                 <div class="row2"></div>
@@ -15,9 +18,9 @@
     </div>
 </section>
 <style>
-    .container {
-        width: 390px;
-        height: 637px;
+    .mainContainer {
+        width: 375px;
+        height: 667px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -30,7 +33,19 @@
         gap: 0px;
         position: absolute;
         border-radius: 0px 0px 0px 0px;
+        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: scale 1.2ms ease-in-out 0 infinite;
     }
+
+    @keyframes scale {
+        0% {
+            scale: 0;
+        }
+        100% {
+            scale: 1;
+        }
+    }
+
     .rows {
         flex-shrink: 0;
         flex: 1 0 0px;
@@ -58,6 +73,18 @@
         gap: 0px;
         border-radius: 0px 0px 0px 0px;
     }
+    @media (min-width: 810px) {
+        .mainContainer {
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+        }
+        .rows {
+            height: auto;
+            border-radius: 12px;
+        }
+    }
+
     .inner-rows {
         box-sizing: border-box;
         flex-shrink: 0;
@@ -132,7 +159,8 @@
         flex-shrink: 0;
         width: 100%;
         height: auto;
-        aspect-ratio: 1/1;
+        aspect-ratio: 4/3;
+        /* aspect-ratio: 1/1; */
         display: block;
         overflow: hidden;
         position: relative;
