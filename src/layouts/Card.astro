@@ -1,7 +1,103 @@
+---
+let count = 0;
+---
+
+<script>
+    document
+        .getElementById("dropzone-file")
+        ?.addEventListener("change", (ev: Event) => {
+            const value = ev.target.value;
+
+            console.log(ev.target.files[0]);
+
+            // Step 1: Retrieve a reference to the <div> element
+            const divElement = document.getElementById("imgDiv"); // Replace 'your-div-id' with the actual id of your <div>
+
+            // Step 2: Set the backgroundImage property of the <div> element
+            const url = URL.createObjectURL(ev.target.files[0]);
+
+            console.log("Event", url);
+            divElement!.style.backgroundImage = `url(${url})`; // Replace with the actual path or URL of your image
+
+            const uploadButton = document.getElementById("uploadButton");
+            if (!uploadButton) return;
+            uploadButton.style.display = "none";
+        });
+</script>
 <section>
     <div class="mainContainer">
         <div class="rows">
-            <div class="image"></div>
+            <!-- <div class="image"></div> -->
+            <!-- <div class="flex-shrink-0 w-auto h-auto whitespace-pre-wrap break-words overflow-visible relative font-bold font-sans dark:text-textHeadingDark text-textHeading md:text-6xl lg:text-7xl text-5xl ${textAlign} tracking-tight leading-tight">
+                         Change Image Text into Langauge of your choice
+                    </div> -->
+
+            <div
+                style="backgroundImage"
+                class="bg-[url('/placeholder.png')] bg-slate-200 w-full aspect-video bg-center bg-cover"
+                id="imgDiv"
+            >
+                <div class="flex items-center justify-center w-full p-12">
+                    <label
+                        for="dropzone-file"
+                        
+                        class="bg-center bg-cover bg-no-repeat flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    >
+                        <div
+                            class="flex flex-col items-center justify-center pt-5 pb-6"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-10 h-10 mb-3 text-gray-400"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"></path>
+                                <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                <path
+                                    d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
+                                ></path>
+                                <path d="M12 11v6"></path>
+                                <path d="M9.5 13.5l2.5 -2.5l2.5 2.5"></path>
+                            </svg>
+
+                            <p
+                                class="mb-2 text-sm text-gray-500 dark:text-gray-400"
+                            >
+                                <span class="font-semibold"
+                                    >Click to upload</span
+                                > or drag and drop
+                            </p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            </p>
+                        </div>
+                        <form
+                            action="/upload"
+                            method="post"
+                            enctype="multipart/form-data"
+                        >
+                            <input
+                                id="ddropzone-file"
+                                type="file"
+                                class="hidden"
+                                name="myFile"
+                            />
+                        </form>
+                    </label>
+                </div>
+                <!-- <div class="h-2 bg-transparent w-auto"></div> -->
+            </div>
+            <!-- <input id="dropzone-file" type="file" class="form-control" /> -->
             <div class="inner-rows">
                 <div class="row1">
                     <div class="title">Some heading</div>
@@ -12,162 +108,227 @@
                         brand and build Framer.com.
                     </div>
                 </div>
-                <div class="row2"></div>
+                <div class="row2">
+                    <div class="bg-white rounded-md flex justify-center">
+                        <button
+                            type="button"
+                            id="counter"
+                            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        >
+                            counter: {count}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+        <style>
+
+            .form-control {
+                display: block;
+                width:100%;
+                padding:.4375rem .75rem;
+                font-size:.875rem;
+                font-weight:400;
+                line-height:1.4285714286;
+                color:inherit;
+                background-color: #ffffff;
+                background-clip: padding-box;
+                border: 1px solid #dadfe5;
+                appearance: none;
+                /* border-radius: 4px; */
+                box-shadow: 0 0 transparent;
+                
+            }
+            .form-control::file-selector-button {
+                padding: 0.6rem 0.75rem;
+                margin: -0.4375rem -0.75rem;
+                -webkit-margin-end: 0.75rem;
+                margin-inline-end: 0.75rem;
+                color: inherit;
+                pointer-events: none;
+                border-color: inherit;
+                border-style: solid;
+                border-width: 0;
+                border-inline-end-width: 1px;
+                border-radius: 0;
+                transition: color 0.15s ease-in-out,
+                    background-color 0.15s ease-in-out,
+                    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+
+            .mainContainer {
+                width: 375px;
+                height: 667px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background-color: #ffffff;
+                overflow: hidden;
+                padding: 0px 0px 0px 0px;
+                align-content: center;
+                flex-wrap: nowrap;
+                gap: 0px;
+                position: absolute;
+                border-radius: 0px 0px 0px 0px;
+                transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                animation: scale 1.2ms ease-in-out 0 infinite;
+            }
+
+            @keyframes scale {
+                0% {
+                    scale: 0;
+                }
+                100% {
+                    scale: 1;
+                }
+            }
+
+            .rows {
+                flex-shrink: 0;
+                flex: 1 0 0px;
+                width: 1px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                box-shadow: 0px 0.8398022765904898px 1.1757231872266858px -0.125px
+                        rgba(0, 0, 0, 0.02),
+                    0px 1.9904796838090988px 2.7866715573327383px -0.25px rgba(0, 0, 0, 0.02239),
+                    0px 3.6308406896569063px 5.083176965519669px -0.375px rgba(0, 0, 0, 0.02436),
+                    0px 6.036265357761295px 8.450771500865812px -0.5px rgba(0, 0, 0, 0.02724),
+                    0px 9.748076360978303px 13.647306905369623px -0.625px rgba(0, 0, 0, 0.0317),
+                    0px 15.956633803711155px 22.339287325195617px -0.75px rgba(0, 0, 0, 0.03915),
+                    0px 27.476245881684008px 38.46674423435761px -0.875px rgba(0, 0, 0, 0.05297),
+                    0px 50px 70px -1px rgba(0, 0, 0, 0.08);
+                background-color: #ffffff;
+                max-width: 430px;
+                overflow: hidden;
+                position: relative;
+                padding: 0px 0px 0px 0px;
+                align-content: center;
+                flex-wrap: nowrap;
+                gap: 0px;
+                border-radius: 0px 0px 0px 0px;
+            }
+            @media (min-width: 810px) {
+                .mainContainer {
+                    padding: 20px;
+                    width: 100%;
+                    height: 100%;
+                }
+                .rows {
+                    height: auto;
+                    border-radius: 12px;
+                }
+            }
+
+            .inner-rows {
+                box-sizing: border-box;
+                flex-shrink: 0;
+                width: 100%;
+                height: min-content;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 50px 50px 50px 50px;
+                background-color: rgba(255, 255, 255, 0.1);
+                overflow: visible;
+                position: relative;
+                align-content: flex-start;
+                flex-wrap: nowrap;
+                gap: 30px;
+                border-radius: 0px 0px 0px 0px;
+            }
+            .row1 {
+                flex-shrink: 0;
+                width: 100%;
+                height: min-content;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                overflow: visible;
+                position: relative;
+                padding: 0px 0px 0px 0px;
+                align-content: flex-start;
+                flex-wrap: nowrap;
+                gap: 20px;
+                border-radius: 0px 0px 0px 0px;
+            }
+            .title {
+                flex-shrink: 0;
+                width: 100%;
+                height: auto;
+                white-space: normal;
+                word-wrap: break-word;
+                word-break: break-word;
+                overflow: hidden;
+                position: relative;
+                font-weight: 700;
+                font-style: normal;
+                font-family: "Inter", "Inter Placeholder", sans-serif;
+                color: var(
+                    --token-b9c3c957-2c66-49c4-9732-fa196fddac20,
+                    #111111
+                );
+                font-size: 32px;
+                letter-spacing: -2.1px;
+                line-height: 1.2;
+                text-align: left;
+            }
+            .subtitle {
+                flex-shrink: 0;
+                width: 100%;
+                height: auto;
+                white-space: normal;
+                word-wrap: break-word;
+                word-break: break-word;
+                overflow: hidden;
+                position: relative;
+                font-weight: 500;
+                font-style: normal;
+                font-family: "Inter", sans-serif;
+                color: #666666;
+                font-size: 16px;
+                letter-spacing: 0px;
+                line-height: 1.6;
+                text-align: left;
+            }
+            .image {
+                flex-shrink: 0;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 4/3;
+                /* aspect-ratio: 1/1; */
+                display: block;
+                overflow: hidden;
+                position: relative;
+                background-image: url("/placeholder-social.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                border-radius: 11px 11px 0px 0px;
+            }
+        </style>
+
+        <!-- 
+<section class="section p-5 md:px-10 lg:p-24">
+    <div class="flex items-center justify-center w-full">
+        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+            </div>
+            <input  id="dropzone-file" type="file" class="hidden" />
+        </label>
+    </div> 
+    <div class="h-2 bg-transparent w-auto" />
+
+    
+    </section> -->
     </div>
 </section>
-<style>
-    .mainContainer {
-        width: 375px;
-        height: 667px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        background-color: #ffffff;
-        overflow: hidden;
-        padding: 0px 0px 0px 0px;
-        align-content: center;
-        flex-wrap: nowrap;
-        gap: 0px;
-        position: absolute;
-        border-radius: 0px 0px 0px 0px;
-        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        animation: scale 1.2ms ease-in-out 0 infinite;
-    }
-
-    @keyframes scale {
-        0% {
-            scale: 0;
-        }
-        100% {
-            scale: 1;
-        }
-    }
-
-    .rows {
-        flex-shrink: 0;
-        flex: 1 0 0px;
-        width: 1px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        box-shadow: 0px 0.8398022765904898px 1.1757231872266858px -0.125px rgba(0, 0, 0, 0.02),
-            0px 1.9904796838090988px 2.7866715573327383px -0.25px rgba(0, 0, 0, 0.02239),
-            0px 3.6308406896569063px 5.083176965519669px -0.375px rgba(0, 0, 0, 0.02436),
-            0px 6.036265357761295px 8.450771500865812px -0.5px rgba(0, 0, 0, 0.02724),
-            0px 9.748076360978303px 13.647306905369623px -0.625px rgba(0, 0, 0, 0.0317),
-            0px 15.956633803711155px 22.339287325195617px -0.75px rgba(0, 0, 0, 0.03915),
-            0px 27.476245881684008px 38.46674423435761px -0.875px rgba(0, 0, 0, 0.05297),
-            0px 50px 70px -1px rgba(0, 0, 0, 0.08);
-        background-color: #ffffff;
-        max-width: 430px;
-        overflow: hidden;
-        position: relative;
-        padding: 0px 0px 0px 0px;
-        align-content: center;
-        flex-wrap: nowrap;
-        gap: 0px;
-        border-radius: 0px 0px 0px 0px;
-    }
-    @media (min-width: 810px) {
-        .mainContainer {
-            padding: 20px;
-            width: 100%;
-            height: 100%;
-        }
-        .rows {
-            height: auto;
-            border-radius: 12px;
-        }
-    }
-
-    .inner-rows {
-        box-sizing: border-box;
-        flex-shrink: 0;
-        width: 100%;
-        height: min-content;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 50px 50px 50px 50px;
-        background-color: rgba(255, 255, 255, 0.1);
-        overflow: visible;
-        position: relative;
-        align-content: flex-start;
-        flex-wrap: nowrap;
-        gap: 30px;
-        border-radius: 0px 0px 0px 0px;
-    }
-    .row1 {
-        flex-shrink: 0;
-        width: 100%;
-        height: min-content;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        overflow: visible;
-        position: relative;
-        padding: 0px 0px 0px 0px;
-        align-content: flex-start;
-        flex-wrap: nowrap;
-        gap: 20px;
-        border-radius: 0px 0px 0px 0px;
-    }
-    .title {
-        flex-shrink: 0;
-        width: 100%;
-        height: auto;
-        white-space: normal;
-        word-wrap: break-word;
-        word-break: break-word;
-        overflow: hidden;
-        position: relative;
-        font-weight: 700;
-        font-style: normal;
-        font-family: "Inter", "Inter Placeholder", sans-serif;
-        color: var(--token-b9c3c957-2c66-49c4-9732-fa196fddac20, #111111);
-        font-size: 32px;
-        letter-spacing: -2.1px;
-        line-height: 1.2;
-        text-align: left;
-    }
-    .subtitle {
-        flex-shrink: 0;
-        width: 100%;
-        height: auto;
-        white-space: normal;
-        word-wrap: break-word;
-        word-break: break-word;
-        overflow: hidden;
-        position: relative;
-        font-weight: 500;
-        font-style: normal;
-        font-family: "Inter", sans-serif;
-        color: #666666;
-        font-size: 16px;
-        letter-spacing: 0px;
-        line-height: 1.6;
-        text-align: left;
-    }
-    .image {
-        flex-shrink: 0;
-        width: 100%;
-        height: auto;
-        aspect-ratio: 4/3;
-        /* aspect-ratio: 1/1; */
-        display: block;
-        overflow: hidden;
-        position: relative;
-        background-image: url("/placeholder-social.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        border-radius: 11px 11px 0px 0px;
-    }
-</style>
